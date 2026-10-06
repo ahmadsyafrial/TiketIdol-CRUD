@@ -1,66 +1,81 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎟️ TiketIdol.com — Sistem Pemesanan Tiket Konser Idol (K-Pop)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi website pemesanan tiket konser resmi untuk grup idol ternama seperti **BABYMONSTER**, **aespa**, **NewJeans**, dan **IU**, dibangun menggunakan **Laravel 12** dan **MySQL** dengan alur dan antarmuka terinspirasi oleh pemesanan tiket pesawat/event di **tiket.com**.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🌟 Fitur Utama
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 1. 🔍 Katalog & Pencarian Konser Idol (tiket.com Style)
+- **Hero Banner Unggulan**: Highlight konser BABYMONSTER "HELLO MONSTERS" Jakarta di ICE BSD dengan info tanggal, venue, dan harga tiket mulai dari Rp 1.100.000.
+- **Widget Pencarian Dinamis**: Filter berdasarkan Artis Idol (BABYMONSTER, aespa, NewJeans, IU), Kota/Venue, atau kata kunci.
+- **Kupon Promo Banner**: Kupon diskon seperti `BABYMONSTERID` (10% s.d. Rp 250.000), `MONSTIEZVIP` (Potongan Rp 100.000), dan `TIKETIDOL50` (Potongan Rp 50.000).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 2. 🎪 Detail Konser & Denah Panggung Interaktif
+- **Informasi Lengkap Konser**: Lineup, tanggal, jam konser & open gate, nama promotor resmi, dan syarat & ketentuan pemesanan tiket (maksimal 4 tiket per NIK).
+- **Denah Panggung & Kursi (Interactive SVG Seating Map)**: Visualisasi panggung utama, runway thrust, zona VIP Soundcheck, CAT 1 Festival, CAT 2 Center Tribune, CAT 3 Wing Tribune, dan CAT 4 Upper Tribune.
+- **Pilihan Kategori Tiket (Tier Selection)**:
+  - Kartu kategori dengan harga, tipe (*Standing* atau *Numbered Seated*), pintu masuk (gate).
+  - Daftar benefit eksklusif (*Soundcheck Pass, Exclusive Lanyard, Fast-track line, dll.*).
+  - Indikator sisa kuota tiket secara langsung.
+  - Selector jumlah tiket (- / +) dengan batas maksimal 4 tiket dan kalkulasi subtotal *real-time*.
 
-## Learning Laravel
+### 3. 📝 Formulir Pemesanan & Rincian Pesanan (Checkout tiket.com)
+- **Step Progress Bar**: 1. Pilih Tiket ➔ 2. Detail Pemesan ➔ 3. Pembayaran ➔ 4. E-Ticket.
+- **Countdown Timer**: Penghitung mundur batas waktu 15:00 menit untuk mengamankan kuota tiket.
+- **Data Pemesan (Contact Details)**: Nama Lengkap (sesuai KTP/Paspor), Email penerima tiket, No. WhatsApp/HP, dan NIK KTP.
+- **Data Pengunjung / Pemegang Tiket (Passenger Style)**: Pengisian identitas setiap tiket dengan tombol *switch* "Sama dengan data pemesan" pada Tiket 1.
+- **Rincian Biaya (Price Breakdown)**:
+  - Harga Tiket (x jumlah)
+  - Pajak Hiburan & Pemerintah (10%)
+  - Biaya Layanan Platform Tiket (Admin Fee)
+  - Form voucher promo dengan validasi otomatis (AJAX)
+  - **Total Pembayaran Bersih (All-in Nett)**.
+- **Pilihan Metode Pembayaran**: QRIS (Rekomendasi), Virtual Account BCA, Mandiri (Livin'), BRI (BRIMO).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 4. 💳 Simulasi Pembayaran
+- Kode Pesanan unik (contoh: `TK-BAB-2026-XXXXX`).
+- Tampilan QRIS dengan kode QR dinamis berskala nasional atau Nomor Virtual Account yang dapat disalin dengan 1 klik.
+- Tombol **Simulasikan Bayar Sekarang (Berhasil)** yang langsung mengonfirmasi status pembayaran menjadi *PAID* dan memotong kuota tiket secara aman.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 5. 🎫 E-Ticket Resmi Ber-Barcode & Nomor Antrean / Kursi
+- Format tiket elektronik modern (*perforated concert pass*) dengan lekukan potongan karcis.
+- Nama pengunjung, NIK, kategori tiket, waktu, dan pintu masuk (*entry gate*).
+- **Nomor Antrean (Queue Number)** otomatis untuk kategori Standing (contoh: `QN-0042`) atau **Nomor Kursi (Seat Number)** untuk kategori Seated (contoh: `SEC-TRB-ROW-A-12`).
+- Barcode dan QR Code resmi untuk validasi scanner di pintu gerbang.
+- Tombol **Cetak / Simpan E-Ticket (PDF)** yang kompatibel dengan print preview browser.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 6. 🔎 Cek Pesanan / My Booking
+- Fasilitas mandiri bagi pengguna untuk mencari riwayat pesanan cukup dengan memasukkan **Kode Pesanan** atau **Email Pemesan**.
 
-## Laravel Sponsors
+### 7. 🛠️ Admin Dashboard & CRUD Manajemen
+- **CRUD Konser**: Tambah konser baru, lihat detail, edit informasi, dan hapus konser.
+- **CRUD Kategori Tiket**: Tambah tier kategori (VIP, CAT 1, dll.), ubah kuota, harga, warna label, benefit, dan hapus kategori.
+- **Manajemen Pesanan & Keuangan**:
+  - Statistik KPI: Total Pendapatan, Tiket Terjual, Total Transaksi, dan Pesanan Menunggu Pembayaran.
+  - Tabel transaksi lengkap dengan filter status (*paid, unpaid, cancelled*).
+  - Halaman detail transaksi untuk memeriksa identitas pemesan & pengunjung, serta opsi ubah status pembayaran manual.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 🗄️ Konfigurasi Database MySQL
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Database baru telah dibuat khusus untuk proyek ini agar tidak mengganggu database proyek lain:
+- **Database**: `db_tiket_konser_idol`
+- **Host**: `127.0.0.1` (Port 3306)
+- **Username**: `root`
+- **Password**: *(kosong)*
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🚀 Cara Menjalankan Proyek
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Pastikan Apache dan MySQL (XAMPP) dalam keadaan berjalan.
+2. Jalankan server Laravel:
+   ```bash
+   php artisan serve
+   ```
+3. Akses aplikasi melalui browser:
+   - **Situs Pemesanan (Publik)**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+   - **Cek Pesanan / E-Ticket**: [http://127.0.0.1:8000/cek-pesanan](http://127.0.0.1:8000/cek-pesanan)
+   - **Admin Panel (CRUD)**: [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
